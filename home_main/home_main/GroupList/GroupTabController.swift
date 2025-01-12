@@ -8,11 +8,14 @@
 import UIKit
 
 final class GroupTabController: UITableViewController {
+    private var networkService = NetworkService()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Groups"
 //        tabBarItem.title = "Groups"
         tableView.register(GroupCell.self, forCellReuseIdentifier: "cell")
+        networkService.getGroups()
     }
 }
 

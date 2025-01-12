@@ -8,12 +8,14 @@
 import UIKit
 
 final class PhotoViewController: UICollectionViewController {
+    private var networkService = NetworkService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Photos"
         tabBarItem.title = "Photos"
         setupViews()
+        networkService.getPhotos()
     }
 
     func setupViews() {
@@ -35,5 +37,4 @@ extension PhotoViewController {
         
         return cell
     }
-
 }

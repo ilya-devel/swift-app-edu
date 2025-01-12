@@ -8,11 +8,13 @@
 import UIKit
 
 final class FriendTabController: UITableViewController {
+    private var networkService = NetworkService()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Friends"
-//        tabBarItem.title = "Friends"
         tableView.register(FriendCell.self, forCellReuseIdentifier: "cell")
+        networkService.getFriends()
     }
 }
 

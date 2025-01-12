@@ -6,94 +6,26 @@
 //
 
 import UIKit
+@preconcurrency import WebKit
 
-class ViewController: UIViewController {
-
-    private var logo: UIImageView = {
-            let logo = UIImageView(image: UIImage(systemName: "person"))
-            return logo
-        }()
-        
-        private var titlePage: UILabel = {
-            let label = UILabel()
-            label.text = "Авторизация"
-            label.textAlignment = .center
-            return label
-        }()
-        
-        private var loginInput: UITextField = {
-            let textInput = UITextField()
-            textInput.placeholder = "Логин"
-            textInput.borderStyle = .bezel
-            return textInput
-        }()
-        
-        private var pasInput: UITextField = {
-            let textInput = UITextField()
-            textInput.placeholder = "Пароль"
-            textInput.borderStyle = .bezel
-            return textInput
-        }()
-        
-        private var btnEnter: UIButton = {
-            let btn = UIButton()
-            btn.backgroundColor = .blue
-            btn.setTitle("Войти", for: .normal)
-            return btn
-        }()
-        
+class ViewController: UIViewController, WKUIDelegate {
+    
+    private lazy var webView: WKWebView = {
+        let webView = WKWebView(frame: view.bounds)
+        webView.navigationDelegate = self
+        return webView
+    }()
 
         override func viewDidLoad() {
             super.viewDidLoad()
-            addElements()
-            btnEnter.addTarget(self, action: #selector(tap), for: .touchUpInside)
-            setConstrains()
-        }
-        
-        func addElements() {
-            view.addSubview(logo)
-            view.addSubview(titlePage)
-            view.addSubview(loginInput)
-            view.addSubview(pasInput)
-            view.addSubview(btnEnter)
-        }
-
-        func setConstrains() {
-            logo.translatesAutoresizingMaskIntoConstraints = false
-            titlePage.translatesAutoresizingMaskIntoConstraints = false
-            loginInput.translatesAutoresizingMaskIntoConstraints = false
-            pasInput.translatesAutoresizingMaskIntoConstraints = false
-            btnEnter.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(webView)
             
-            NSLayoutConstraint.activate([
-                logo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                logo.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-                logo.widthAnchor.constraint(equalToConstant: 200),
-                logo.heightAnchor.constraint(equalToConstant: 200),
-                
-                titlePage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                titlePage.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 10),
-                titlePage.widthAnchor.constraint(equalToConstant: 200),
-                titlePage.heightAnchor.constraint(equalToConstant: 50),
-                
-                loginInput.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                loginInput.topAnchor.constraint(equalTo: titlePage.bottomAnchor, constant: 20),
-                loginInput.widthAnchor.constraint(equalToConstant: 200),
-                loginInput.heightAnchor.constraint(equalToConstant: 50),
-                
-                pasInput.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                pasInput.topAnchor.constraint(equalTo: loginInput.bottomAnchor, constant: 10),
-                pasInput.widthAnchor.constraint(equalToConstant: 200),
-                pasInput.heightAnchor.constraint(equalToConstant: 50),
-                
-                btnEnter.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                btnEnter.topAnchor.constraint(equalTo: pasInput.bottomAnchor, constant: 20),
-                btnEnter.widthAnchor.constraint(equalToConstant: 200),
-                btnEnter.heightAnchor.constraint(equalToConstant: 50)
-            ])
+            let myURL = URL(string: "https://oauth.vk.com/authorize?client_id=\(AppData.appID)&redirect_uri=https://oauth.vk.com/blank.html&scope=friends,groups,photos&display=mobile&response_type=token")
+            webView.load(URLRequest(url: myURL!))
         }
         
-        @objc private func tap() {
+        
+        private func tap() {
             let friend = UINavigationController(rootViewController: FriendTabController())
             let group = UINavigationController(rootViewController: GroupTabController())
             let photo = UINavigationController(rootViewController: PhotoViewController(collectionViewLayout: ColumnFlowLayout()))
@@ -113,6 +45,34 @@ class ViewController: UIViewController {
             
             firstWindow.rootViewController = tabBarController
         }
+}
+
+extension ViewController: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+        guard let url = navigationResponse.response.url, url.path == "/blank.html", let fragment = url.fragment else {
+            decisionHandler(.allow)
+            return
+        }
+        let params = fragment
+            .components(separatedBy: "&")
+            .map { $0.components(separatedBy: "=") }
+            .reduce([String: String]()) { result, param in
+                var dict = result
+                let key = param[0]
+                let value = param[1]
+                dict[key] = value
+                return dict
+            }
+        NetworkService.token = params["access_token"]!
+        NetworkService.userID = params["user_id"]!
+        print("Token: " + NetworkService.token)
+        print("-----")
+        print("UserID: " + NetworkService.userID)
+        print("")
+        decisionHandler(.cancel)
+        webView.removeFromSuperview()
+        tap()
+    }
 }
 
 #Preview () {
