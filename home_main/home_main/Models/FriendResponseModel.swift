@@ -16,9 +16,18 @@ struct FriendResultModel: Codable {
 
 struct FriendModel: Codable {
     var id: Int?
-    var track_code: String?
-    var first_name: String?
-    var last_name: String?
-    var can_access_closed: Bool?
-    var is_closed: Bool?
+    var trackCode: String?
+    var firstName: String?
+    var lastName: String?
+    var canAccessClosed: Bool?
+    var isClosed: Bool?
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case trackCode = "track_code"
+        case firstName = "first_name"
+        case lastName = "last_name"
+        case canAccessClosed = "can_access_closed"
+        case isClosed = "is_closed"
+    }
 }

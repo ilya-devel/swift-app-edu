@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ColumnFlowLayout: UICollectionViewFlowLayout {
+final class ColumnFlowLayout: UICollectionViewFlowLayout {
 
     override func prepare() {
         super.prepare()

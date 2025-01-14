@@ -5,6 +5,6 @@
 //  Created by Ильяс Альфатович on 11.01.2025.
 //
 
-class AppData {
+final class AppData {
     static var appID = "52910572"
 }

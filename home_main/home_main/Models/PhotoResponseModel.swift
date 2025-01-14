@@ -15,12 +15,21 @@ struct PhotoResultModel: Codable {
 }
 
 struct PhotoModel: Codable {
-    var album_id: Int?
+    var albumId: Int?
     var date: Int?
     var id: Int?
-    var owner_id: Int?
-    var web_view_token: String?
-    var orig_photo: MetaPhotoModel
+    var ownerId: Int?
+    var webViewToken: String?
+    var origPhoto: MetaPhotoModel
+    
+    enum CodingKeys: String, CodingKey {
+        case albumId = "album_id"
+        case date
+        case id
+        case ownerId = "owner_id"
+        case webViewToken = "web_view_token"
+        case origPhoto = "orig_photo"
+    }
 }
 
 struct MetaPhotoModel: Codable {
