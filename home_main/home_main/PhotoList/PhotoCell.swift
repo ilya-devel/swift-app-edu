@@ -31,20 +31,24 @@ final class PhotoCell: UICollectionViewCell {
     }
 
     func setupViews() {
-
-        backgroundColor = .blue
-
-        addSubview(imageView)
-        addSubview(separatorLineView)
-
-        separatorLineView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        separatorLineView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        separatorLineView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        separatorLineView.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
+//        imageView.contentMode = ContentMode.scaleAspectFit
+    }
+    
+    func setupPhoto(photo: PhotoModel) {
+        guard let photoUrl: URL = URL(string: photo.origPhoto.url!) else {return}
+        
+        DispatchQueue.global().async { [weak self] in guard let self = self else {return}
+            guard let imageData = try? Data(contentsOf: photoUrl) else {return}
+            
+            DispatchQueue.main.async {
+                let image = UIImage(data: imageData)
+                self.imageView = UIImageView(image: image)
+                self.imageView.frame = self.bounds
+                self.imageView.contentMode = ContentMode.scaleAspectFit
+                self.addSubview(self.imageView)
+            }
+        }
     }
 
 }
 
-#Preview() {
-    PhotoCell()
-}

@@ -9,13 +9,18 @@ import UIKit
 
 final class PhotoViewController: UICollectionViewController {
     private var networkService = NetworkService()
+    private var models: [PhotoModel] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Photos"
         tabBarItem.title = "Photos"
         setupViews()
-        networkService.getPhotos()
+        networkService.getPhotos {[weak self] photos in self?.models = photos
+            DispatchQueue.main.async{
+                self?.collectionView.reloadData()
+            }
+        }
     }
 
     func setupViews() {
@@ -28,12 +33,16 @@ final class PhotoViewController: UICollectionViewController {
 extension PhotoViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        6
+        models.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.identifier, for: indexPath) as! PhotoCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.identifier, for: indexPath) as? PhotoCell
+        guard let cell = cell else {
+            return UICollectionViewCell()
+        }
+        cell.setupPhoto(photo: models[indexPath.row])
         
         return cell
     }

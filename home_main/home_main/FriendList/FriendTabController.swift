@@ -9,12 +9,17 @@ import UIKit
 
 final class FriendTabController: UITableViewController {
     private var networkService = NetworkService()
+    private var models: [FriendModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Friends"
-        tableView.register(FriendCell.self, forCellReuseIdentifier: "cell")
-        networkService.getFriends()
+        tableView.register(FriendCell.self, forCellReuseIdentifier: "friend")
+        networkService.getFriends {[weak self] friends in self?.models = friends
+            DispatchQueue.main.async{
+                self?.tableView.reloadData()
+            }
+        }
     }
 }
 
@@ -28,11 +33,16 @@ extension FriendTabController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+        models.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        FriendCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "friend") as? FriendCell
+        guard let cell = cell else {
+            return UITableViewCell()
+        }
+        cell.setupAboutFriend(friend: models[indexPath.row])
+        return cell
     }
 }
 

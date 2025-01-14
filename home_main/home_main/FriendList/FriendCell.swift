@@ -8,29 +8,70 @@
 import UIKit
 
 final class FriendCell: UITableViewCell {
-    private var circle: UIView = {
-        let circle = UIView()
+    private var circle: UIImageView = {
+        let circle = UIImageView()
         circle.backgroundColor = .green
         circle.layer.cornerRadius = 25
         return circle
     }()
     
+    private var photo: UIImageView = {
+        let photo = UIImageView(image: UIImage(systemName: "person"))
+        photo.layer.cornerRadius = 25
+        photo.backgroundColor = .red
+        return photo
+    }()
+    
     private var label: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.text = "Name"
+        label.text = "Anonim"
+        return label
+    }()
+    
+    private var labelStatus: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.text = "online"
+        label.textColor = .green
+        label.font = .italicSystemFont(ofSize: 12)
         return label
     }()
     
     private func setupView() {
         contentView.addSubview(circle)
+        circle.addSubview(photo)
+        photo.contentMode = ContentMode.scaleAspectFit
         contentView.addSubview(label)
+        contentView.addSubview(labelStatus)
         setConstraints()
+    }
+    
+    func setupAboutFriend(friend: FriendModel) {
+        label.text = (friend.lastName ?? "") + " " + (friend.firstName ?? "")
+        if (friend.onlineStatus == 0) {
+            labelStatus.text = "ofline"
+            labelStatus.textColor = .red
+        }
+        guard let photoUrl: URL = URL(string: friend.photoOrig!) else {return}
+        
+        DispatchQueue.global().async { [weak self] in guard let self = self else {return}
+            guard let imageData = try? Data(contentsOf: photoUrl) else {return}
+            
+            DispatchQueue.main.async {
+                let image = UIImage(data: imageData)
+                self.photo.image = image
+                self.photo.contentMode = UIView.ContentMode.scaleAspectFit
+                self.photo.layer.cornerRadius = 25
+            }
+        }
     }
     
     private func setConstraints() {
         circle.translatesAutoresizingMaskIntoConstraints = false
         label.translatesAutoresizingMaskIntoConstraints = false
+        labelStatus.translatesAutoresizingMaskIntoConstraints = false
+        photo.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             circle.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
@@ -38,10 +79,21 @@ final class FriendCell: UITableViewCell {
             circle.heightAnchor.constraint(equalToConstant: 50),
             circle.widthAnchor.constraint(equalTo: circle.heightAnchor),
             
-            label.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            photo.centerYAnchor.constraint(equalTo: circle.centerYAnchor),
+            photo.centerXAnchor.constraint(equalTo: circle.centerXAnchor),
+            photo.widthAnchor.constraint(equalTo: circle.widthAnchor),
+            photo.heightAnchor.constraint(equalTo: circle.heightAnchor),
+            
+            label.leftAnchor.constraint(equalTo: circle.rightAnchor, constant: 20),
+            label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: -10),
             label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            labelStatus.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            
+            labelStatus.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10),
+            labelStatus.leftAnchor.constraint(equalTo: circle.rightAnchor, constant: 20),
+            labelStatus.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 10)
+            
+            
         ])
     }
     

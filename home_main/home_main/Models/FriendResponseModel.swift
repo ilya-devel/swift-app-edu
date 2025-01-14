@@ -21,6 +21,8 @@ struct FriendModel: Codable {
     var lastName: String?
     var canAccessClosed: Bool?
     var isClosed: Bool?
+    var onlineStatus: Int?
+    var photoOrig: String?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -29,5 +31,7 @@ struct FriendModel: Codable {
         case lastName = "last_name"
         case canAccessClosed = "can_access_closed"
         case isClosed = "is_closed"
+        case onlineStatus = "online"
+        case photoOrig = "photo_200_orig"   
     }
 }
