@@ -50,7 +50,7 @@ final class FriendCell: UITableViewCell {
     func setupAboutFriend(friend: FriendModel) {
         label.text = (friend.lastName ?? "") + " " + (friend.firstName ?? "")
         if (friend.onlineStatus == 0) {
-            labelStatus.text = "ofline"
+            labelStatus.text = "offline"
             labelStatus.textColor = .red
         }
         guard let photoUrl: URL = URL(string: friend.photoOrig!) else {return}

@@ -8,8 +8,8 @@
 import UIKit
 
 final class GroupCell: UITableViewCell {
-    private var circle: UIView = {
-        let circle = UIView()
+    private var circle: UIImageView = {
+        let circle = UIImageView()
         circle.backgroundColor = .green
         circle.layer.cornerRadius = 25
         return circle
@@ -80,12 +80,14 @@ final class GroupCell: UITableViewCell {
             
             
             DispatchQueue.main.async {
-                let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.circle.frame.width, height: self.circle.frame.height))
+//                let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.circle.frame.width, height: self.circle.frame.height))
                 
                 let image = UIImage(data: imageData)
-                imageView.image = image
-                imageView.contentMode = UIView.ContentMode.scaleAspectFit
-                self.circle.addSubview(imageView)
+//                imageView.image = image
+//                imageView.contentMode = UIView.ContentMode.scaleAspectFit
+//                self.circle.addSubview(imageView)
+                self.circle.image = image
+                self.circle.contentMode = ContentMode.scaleAspectFit
             }
         }
     }

@@ -8,7 +8,7 @@
 import UIKit
 @preconcurrency import WebKit
 
-class ViewController: UIViewController, WKUIDelegate {
+final class ViewController: UIViewController, WKUIDelegate {
     
     private lazy var webView: WKWebView = {
         let webView = WKWebView(frame: view.bounds)
