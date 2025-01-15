@@ -80,12 +80,7 @@ final class GroupCell: UITableViewCell {
             
             
             DispatchQueue.main.async {
-//                let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.circle.frame.width, height: self.circle.frame.height))
-                
                 let image = UIImage(data: imageData)
-//                imageView.image = image
-//                imageView.contentMode = UIView.ContentMode.scaleAspectFit
-//                self.circle.addSubview(imageView)
                 self.circle.image = image
                 self.circle.contentMode = ContentMode.scaleAspectFit
             }
