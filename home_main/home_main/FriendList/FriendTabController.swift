@@ -20,6 +20,7 @@ final class FriendTabController: UITableViewController {
                 self?.tableView.reloadData()
             }
         }
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person"), style: .plain, target: self, action: #selector(showProfile))
     }
 }
 
@@ -43,6 +44,17 @@ extension FriendTabController {
         }
         cell.setupAboutFriend(friend: models[indexPath.row])
         return cell
+    }
+}
+
+private extension FriendTabController {
+    @objc func showProfile() {
+        let animation = CATransition()
+        animation.timingFunction = CAMediaTimingFunction(name: .easeIn)
+        animation.type = .fade
+        animation.duration = 1
+        navigationController?.view.layer.add(animation, forKey: nil)
+        navigationController?.pushViewController(ProfilePageView(), animated: false)
     }
 }
 
