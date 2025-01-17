@@ -13,6 +13,7 @@ final class GroupTabController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = AppData.currentTheme.background
         title = "Groups"
 //        tabBarItem.title = "Groups"
         tableView.register(GroupCell.self, forCellReuseIdentifier: "group")

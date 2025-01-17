@@ -13,6 +13,7 @@ final class FriendTabController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = AppData.currentTheme.background
         title = "Friends"
         tableView.register(FriendCell.self, forCellReuseIdentifier: "friend")
         networkService.getFriends {[weak self] friends in self?.models = friends

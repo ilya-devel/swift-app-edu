@@ -71,7 +71,7 @@ final class NetworkService {
     }
     
     func getUserAbout(completion: @escaping ([UserModel]) -> Void) {
-        guard let url = URL(string: "https://api.vk.com/method/users.get?access_token=vk1.a.F4aw957H-oQvjlmzRe_ZHZFdONwkNpsocC35aKWD-yOp9Yk_r0t5ZB9xHkvXSs6_nu-1cII4u1h0rbYypj7rqd3iyFebFTMrbPWU_P22wMj1ohYuGZxG4rHB-0r0eUEwBd4R21utXvNxkVwo8BUXGwPrjK5H8VbT0sMkp6nsbGT96p--93PScbf8-GSKCrTjP9hubrTHnxSlVMKg92yxEA&v=5.199%20HTTP/1.1&fields=photo_max_orig") else {return}
+        guard let url = URL(string: "https://api.vk.com/method/users.get?access_token=\(NetworkService.token)&v=5.199%20HTTP/1.1&fields=photo_max_orig") else {return}
         
         session.dataTask(with: url) { (data, _, error) in
             guard let data = data else {

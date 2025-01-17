@@ -18,6 +18,7 @@ final class ViewController: UIViewController, WKUIDelegate {
 
         override func viewDidLoad() {
             super.viewDidLoad()
+            view.backgroundColor = AppData.currentTheme.background
             view.addSubview(webView)
             
             let myURL = URL(string: "https://oauth.vk.com/authorize?client_id=\(AppData.appID)&redirect_uri=https://oauth.vk.com/blank.html&scope=friends,groups,photos&display=mobile&response_type=token")

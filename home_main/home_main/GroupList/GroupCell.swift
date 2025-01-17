@@ -10,7 +10,7 @@ import UIKit
 final class GroupCell: UITableViewCell {
     private var circle: UIImageView = {
         let circle = UIImageView()
-        circle.backgroundColor = .green
+        circle.backgroundColor = AppData.currentTheme.background
         circle.layer.cornerRadius = 25
         return circle
     }()
@@ -19,6 +19,7 @@ final class GroupCell: UITableViewCell {
         let label = UILabel()
         label.textAlignment = .center
         label.text = "Name"
+        label.textColor = AppData.currentTheme.fontColor
         return label
     }()
     
@@ -26,10 +27,12 @@ final class GroupCell: UITableViewCell {
         let label = UILabel()
         label.textAlignment = .center
         label.text = "Description"
+        label.textColor = AppData.currentTheme.fontColor
         return label
     }()
     
     private func setupView() {
+        contentView.backgroundColor = AppData.currentTheme.background
         contentView.addSubview(circle)
         contentView.addSubview(name)
         contentView.addSubview(desc)

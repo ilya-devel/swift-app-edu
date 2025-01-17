@@ -10,7 +10,7 @@ import UIKit
 final class FriendCell: UITableViewCell {
     private var circle: UIImageView = {
         let circle = UIImageView()
-        circle.backgroundColor = .green
+        circle.backgroundColor = AppData.currentTheme.background
         circle.layer.cornerRadius = 25
         return circle
     }()
@@ -18,13 +18,14 @@ final class FriendCell: UITableViewCell {
     private var photo: UIImageView = {
         let photo = UIImageView(image: UIImage(systemName: "person"))
         photo.layer.cornerRadius = 25
-        photo.backgroundColor = .red
+        photo.backgroundColor = AppData.currentTheme.background
         return photo
     }()
     
     private var label: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
+        label.textColor = AppData.currentTheme.fontColor
         label.text = "Anonim"
         return label
     }()
@@ -39,6 +40,7 @@ final class FriendCell: UITableViewCell {
     }()
     
     private func setupView() {
+        contentView.backgroundColor = AppData.currentTheme.background
         contentView.addSubview(circle)
         circle.addSubview(photo)
         photo.contentMode = ContentMode.scaleAspectFit

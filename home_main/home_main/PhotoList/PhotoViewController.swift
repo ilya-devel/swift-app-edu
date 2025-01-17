@@ -24,7 +24,7 @@ final class PhotoViewController: UICollectionViewController {
     }
 
     func setupViews() {
-        collectionView?.backgroundColor = .white
+        collectionView?.backgroundColor = AppData.currentTheme.background
         collectionView?.register(PhotoCell.self, forCellWithReuseIdentifier: PhotoCell.identifier)
     }
 
