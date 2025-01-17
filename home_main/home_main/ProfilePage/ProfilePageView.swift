@@ -29,40 +29,7 @@ final class ProfilePageView: UIViewController {
     private var networkService = NetworkService()
     private var userModels: [UserModel] = []
     
-    var titleSetChoice: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = AppData.currentTheme.background
-        label.textColor = AppData.currentTheme.fontColor
-        label.text = "Choice Theme"
-        return label
-    }()
-    
-    var btnLightTheme: UIButton = {
-        let btn = UIButton()
-        btn.backgroundColor = AppData.currentTheme.btnBackground
-        btn.tag = 1
-        btn.setTitle("Light Theme", for: .normal)
-        btn.setTitleColor(AppData.currentTheme.fontColor, for: .normal)
-        return btn
-    }()
-    
-    var btnDarkTheme: UIButton = {
-        let btn = UIButton()
-        btn.backgroundColor = AppData.currentTheme.btnBackground
-        btn.tag = 2
-        btn.setTitle("Dark Theme", for: .normal)
-        btn.setTitleColor(AppData.currentTheme.fontColor, for: .normal)
-        return btn
-    }()
-    
-    var btnSepiaTheme: UIButton = {
-        let btn = UIButton()
-        btn.backgroundColor = AppData.currentTheme.btnBackground
-        btn.tag = 3
-        btn.setTitle("Sepia Theme", for: .normal)
-        btn.setTitleColor(AppData.currentTheme.fontColor, for: .normal)
-        return btn
-    }()
+    private var setThemeView = SetThemeView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,31 +40,18 @@ final class ProfilePageView: UIViewController {
             DispatchQueue.main.async{
                 self?.setupData()}
         }
-        addActionForButton()
     }
-    
-    private func addActionForButton() {
-        btnLightTheme.addTarget(self, action: #selector(setTheme), for: .touchUpInside)
-        btnDarkTheme.addTarget(self, action: #selector(setTheme), for: .touchUpInside)
-        btnSepiaTheme.addTarget(self, action: #selector(setTheme), for: .touchUpInside)
-    }
-    
+        
     private func addElements() {
         view.addSubview(photo)
         view.addSubview(userName)
-        view.addSubview(titleSetChoice)
-        view.addSubview(btnLightTheme)
-        view.addSubview(btnDarkTheme)
-        view.addSubview(btnSepiaTheme)
+        view.addSubview(setThemeView)
     }
     
     private func setupConstraints() {
         photo.translatesAutoresizingMaskIntoConstraints = false
         userName.translatesAutoresizingMaskIntoConstraints = false
-        titleSetChoice.translatesAutoresizingMaskIntoConstraints = false
-        btnLightTheme.translatesAutoresizingMaskIntoConstraints = false
-        btnDarkTheme.translatesAutoresizingMaskIntoConstraints = false
-        btnSepiaTheme.translatesAutoresizingMaskIntoConstraints = false
+        setThemeView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             photo.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
@@ -108,20 +62,8 @@ final class ProfilePageView: UIViewController {
             userName.topAnchor.constraint(equalTo: photo.bottomAnchor, constant: 20),
             userName.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            titleSetChoice.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            titleSetChoice.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 30),
-            
-            btnLightTheme.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            btnLightTheme.topAnchor.constraint(equalTo: titleSetChoice.bottomAnchor, constant: 10),
-            btnLightTheme.widthAnchor.constraint(equalToConstant: 200),
-            
-            btnDarkTheme.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            btnDarkTheme.topAnchor.constraint(equalTo: btnLightTheme.bottomAnchor, constant: 5),
-            btnDarkTheme.widthAnchor.constraint(equalToConstant: 200),
-            
-            btnSepiaTheme.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            btnSepiaTheme.topAnchor.constraint(equalTo: btnDarkTheme.bottomAnchor, constant: 5),
-            btnSepiaTheme.widthAnchor.constraint(equalToConstant: 200),
+            setThemeView.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 40),
+            setThemeView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
     
@@ -141,16 +83,10 @@ final class ProfilePageView: UIViewController {
     }
 }
 
-extension ProfilePageView {
-    @objc func setTheme(sender: UIButton) {
-        switch sender.tag {
-            case 1: AppData.setCurrentTheme(color: .light)
-            case 2: AppData.setCurrentTheme(color: .dark)
-            case 3: AppData.setCurrentTheme(color: .sepia)
-        default:
-            return
-        }
-        print("OK")
+extension ProfilePageView: ThemeViewDelegate {
+    func updateColor() {
+        view.backgroundColor = AppData.currentTheme.background
+        userName.textColor = AppData.currentTheme.fontColor
     }
 }
 
