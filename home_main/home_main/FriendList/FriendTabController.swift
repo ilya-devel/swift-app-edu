@@ -13,6 +13,7 @@ final class FriendTabController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ColorsSchemeControll.addView(newView: self)
         view.backgroundColor = AppData.currentTheme.background
         title = "Friends"
         tableView.register(FriendCell.self, forCellReuseIdentifier: "friend")
@@ -56,6 +57,12 @@ private extension FriendTabController {
         animation.duration = 1
         navigationController?.view.layer.add(animation, forKey: nil)
         navigationController?.pushViewController(ProfilePageView(), animated: false)
+    }
+}
+
+extension FriendTabController: ThemeViewDelegate {
+    func updateColor() {
+        view.backgroundColor = AppData.currentTheme.background
     }
 }
 

@@ -11,12 +11,16 @@ protocol ThemeViewDelegate: AnyObject {
     func updateColor()
 }
 
-final class SetThemeView: UIView {
+final class SetThemeView: UIView, ThemeViewDelegate {
+    func updateColor() {
+        backgroundColor = AppData.currentTheme.background
+        titleSetChoice.textColor = AppData.currentTheme.fontColor
+    }
+    
     weak var delegate: ThemeViewDelegate?
     
     var titleSetChoice: UILabel = {
         let label = UILabel()
-        label.backgroundColor = AppData.currentTheme.background
         label.textColor = AppData.currentTheme.fontColor
         label.text = "Choice Theme"
         return label
@@ -54,11 +58,14 @@ final class SetThemeView: UIView {
     
     init() {
         super.init(frame: .zero)
-        backgroundColor = AppData.currentTheme.background
+        ColorsSchemeControll.addView(newView: self)
+//        backgroundColor = AppData.currentTheme.background
+//        backgroundColor = .red
         btnLightTheme.addTarget(self, action: #selector(setTheme), for: .touchUpInside)
         btnDarkTheme.addTarget(self, action: #selector(setTheme), for: .touchUpInside)
         btnSepiaTheme.addTarget(self, action: #selector(setTheme), for: .touchUpInside)
         setupView()
+        self.delegate = self
     }
     
     func setupView() {
@@ -77,7 +84,7 @@ final class SetThemeView: UIView {
         
         NSLayoutConstraint.activate([
             titleSetChoice.centerXAnchor.constraint(equalTo: centerXAnchor),
-            titleSetChoice.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 30),
+            titleSetChoice.centerYAnchor.constraint(equalTo: topAnchor, constant: 30),
 
             btnLightTheme.centerXAnchor.constraint(equalTo: centerXAnchor),
             btnLightTheme.topAnchor.constraint(equalTo: titleSetChoice.bottomAnchor, constant: 10),
@@ -100,6 +107,7 @@ final class SetThemeView: UIView {
 
 private extension SetThemeView {
     @objc func setTheme(sender: UIButton) {
+        print("update Setting...")
         let color: ColorsForTheme
         switch sender.tag {
             case 1: color = .light
@@ -109,7 +117,8 @@ private extension SetThemeView {
             return
         }
         AppData.setCurrentTheme(color: color)
-        delegate?.updateColor()
+//        delegate?.updateColor()
+        ColorsSchemeControll.updateScheme()
         print("OK")
     }
 }

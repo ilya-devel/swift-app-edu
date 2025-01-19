@@ -7,7 +7,13 @@
 
 import UIKit
 
-final class FriendCell: UITableViewCell {
+final class FriendCell: UITableViewCell, ThemeViewDelegate {
+    func updateColor() {
+        circle.backgroundColor = AppData.currentTheme.background
+        photo.backgroundColor = AppData.currentTheme.background
+        label.textColor = AppData.currentTheme.fontColor
+    }
+    
     private var circle: UIImageView = {
         let circle = UIImageView()
         circle.backgroundColor = AppData.currentTheme.background
@@ -101,6 +107,7 @@ final class FriendCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        ColorsSchemeControll.addView(newView: self)
         setupView()
     }
     

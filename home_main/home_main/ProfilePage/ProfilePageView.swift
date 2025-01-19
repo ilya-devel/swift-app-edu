@@ -33,6 +33,7 @@ final class ProfilePageView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ColorsSchemeControll.addView(newView: self)
         view.backgroundColor = AppData.currentTheme.background
         addElements()
         setupConstraints()
@@ -63,7 +64,9 @@ final class ProfilePageView: UIViewController {
             userName.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             setThemeView.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 40),
-            setThemeView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            setThemeView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            setThemeView.heightAnchor.constraint(equalTo: view.heightAnchor),
+            setThemeView.widthAnchor.constraint(equalTo: view.widthAnchor)
         ])
     }
     
@@ -84,9 +87,12 @@ final class ProfilePageView: UIViewController {
 }
 
 extension ProfilePageView: ThemeViewDelegate {
+
+    
     func updateColor() {
         view.backgroundColor = AppData.currentTheme.background
         userName.textColor = AppData.currentTheme.fontColor
+        print("Update profile")
     }
 }
 

@@ -13,6 +13,7 @@ final class GroupTabController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ColorsSchemeControll.addView(newView: self)
         view.backgroundColor = AppData.currentTheme.background
         title = "Groups"
 //        tabBarItem.title = "Groups"
@@ -45,6 +46,12 @@ extension GroupTabController {
             }
             cell.setupAboutGroup(group: models[indexPath.row])
             return cell
+    }
+}
+
+extension GroupTabController: ThemeViewDelegate {
+    func updateColor() {
+        view.backgroundColor = AppData.currentTheme.background
     }
 }
 

@@ -64,6 +64,7 @@ final class GroupCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        ColorsSchemeControll.addView(newView: self)
         setupView()
     }
     
@@ -88,6 +89,14 @@ final class GroupCell: UITableViewCell {
                 self.circle.contentMode = ContentMode.scaleAspectFit
             }
         }
+    }
+}
+
+extension GroupCell: ThemeViewDelegate {
+    func updateColor() {
+        contentView.backgroundColor = AppData.currentTheme.background
+        name.textColor = AppData.currentTheme.fontColor
+        desc.textColor = AppData.currentTheme.fontColor
     }
 }
 

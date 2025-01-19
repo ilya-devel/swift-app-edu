@@ -8,11 +8,14 @@
 import UIKit
 
 final class PhotoViewController: UICollectionViewController {
+    weak var delegate: ThemeViewDelegate?
+    
     private var networkService = NetworkService()
     private var models: [PhotoModel] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        ColorsSchemeControll.addView(newView: self)
         title = "Photos"
         tabBarItem.title = "Photos"
         setupViews()
@@ -45,5 +48,11 @@ extension PhotoViewController {
         cell.setupPhoto(photo: models[indexPath.row])
         
         return cell
+    }
+}
+
+extension PhotoViewController: ThemeViewDelegate {
+    func updateColor() {
+        collectionView?.backgroundColor = AppData.currentTheme.background
     }
 }

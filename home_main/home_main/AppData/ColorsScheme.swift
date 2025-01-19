@@ -7,6 +7,20 @@
 
 import UIKit
 
+class ColorsSchemeControll {
+    static var lstViews: [ThemeViewDelegate] = []
+
+    static func addView(newView: ThemeViewDelegate) {
+        lstViews.append(newView)
+    }
+    
+    static func updateScheme() {
+        for updView in lstViews {
+            updView.updateColor()
+        }
+    }
+}
+
 protocol ColorTheme {
     var background: UIColor {get}
     var fontColor: UIColor {get}
