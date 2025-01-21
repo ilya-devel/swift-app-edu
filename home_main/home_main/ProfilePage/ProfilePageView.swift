@@ -92,6 +92,7 @@ extension ProfilePageView: ThemeViewDelegate {
     func updateColor() {
         view.backgroundColor = AppData.currentTheme.background
         userName.textColor = AppData.currentTheme.fontColor
+        photo.backgroundColor = AppData.currentTheme.background
         print("Update profile")
     }
 }

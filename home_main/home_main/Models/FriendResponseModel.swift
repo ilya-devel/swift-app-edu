@@ -35,3 +35,7 @@ struct FriendModel: Codable {
         case photoOrig = "photo_200_orig"   
     }
 }
+
+struct FriendStorage: Codable {
+    var friends: [FriendModel]?
+}

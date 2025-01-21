@@ -9,6 +9,7 @@ import UIKit
 
 final class FriendCell: UITableViewCell, ThemeViewDelegate {
     func updateColor() {
+        contentView.backgroundColor = AppData.currentTheme.background
         circle.backgroundColor = AppData.currentTheme.background
         photo.backgroundColor = AppData.currentTheme.background
         label.textColor = AppData.currentTheme.fontColor

@@ -10,18 +10,35 @@ import UIKit
 final class GroupTabController: UITableViewController {
     private var networkService = NetworkService()
     private var models: [GroupModel] = []
+    private var keyList = "groupList"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadModels()
         ColorsSchemeControll.addView(newView: self)
         view.backgroundColor = AppData.currentTheme.background
         title = "Groups"
-//        tabBarItem.title = "Groups"
         tableView.register(GroupCell.self, forCellReuseIdentifier: "group")
         networkService.getGroups {[weak self] groups in self?.models = groups
+            self?.saveModels(groups: groups)
             DispatchQueue.main.async{
                 self?.tableView.reloadData()
             }
+        }
+    }
+    
+    private func loadModels() {
+        if
+            let data = UserDefaults.standard.value(forKey: keyList) as? Data,
+            let groupList = try? JSONDecoder().decode(GroupStorage.self, from: data) {
+            models = groupList.groups ?? []
+        }
+    }
+    
+    private func saveModels(groups: [GroupModel]) {
+        let groupsList = GroupStorage(groups: groups)
+        if let data = try? JSONEncoder().encode(groupsList) {
+            UserDefaults.standard.set(data, forKey: keyList)
         }
     }
 }

@@ -22,10 +22,10 @@ final class NetworkService {
             }
             do {
                 let friends = try JSONDecoder().decode(FriendResponseModel.self, from: data).response.items
-                print("Friends List: ")
-                print(friends ?? "Friends List is empty")
+//                print("Friends List: ")
+//                print(friends ?? "Friends List is empty")
                 completion(friends ?? [])
-                print("=====")
+//                print("=====")
             } catch{
                 print(error)
             }
@@ -41,10 +41,10 @@ final class NetworkService {
             }
             do {
                 let groups = try JSONDecoder().decode(GroupResponseModel.self, from: data).response.items
-                print("Groups List: ")
+//                print("Groups List: ")
                 completion(groups ?? [])
-                print(groups ?? "Groups List is empty")
-                print("=====")
+//                print(groups ?? "Groups List is empty")
+//                print("=====")
             } catch{
                 print(error)
             }
@@ -60,10 +60,10 @@ final class NetworkService {
             }
             do {
                 let photos = try JSONDecoder().decode(PhotoResponseModel.self, from: data).response.items
-                print("Photos List: ")
-                print(photos ?? "Photos List is empty")
+//                print("Photos List: ")
+//                print(photos ?? "Photos List is empty")
                 completion(photos ?? [])
-                print("=====")
+//                print("=====")
             } catch{
                 print(error)
             }
@@ -79,10 +79,10 @@ final class NetworkService {
             }
             do {
                 let users = try JSONDecoder().decode(UserResponseModel.self, from: data).response
-                print("Users List: ")
-                print(users)
+//                print("Users List: ")
+//                print(users)
                 completion(users)
-                print("=====")
+//                print("=====")
             } catch{
                 print(error)
             }

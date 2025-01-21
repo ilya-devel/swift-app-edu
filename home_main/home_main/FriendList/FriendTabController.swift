@@ -10,9 +10,11 @@ import UIKit
 final class FriendTabController: UITableViewController {
     private var networkService = NetworkService()
     private var models: [FriendModel] = []
+    private var keyList = "friendsList"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadModels()
         ColorsSchemeControll.addView(newView: self)
         view.backgroundColor = AppData.currentTheme.background
         title = "Friends"
@@ -21,9 +23,26 @@ final class FriendTabController: UITableViewController {
             DispatchQueue.main.async{
                 self?.tableView.reloadData()
             }
+            self?.saveModels(friends: friends)
         }
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person"), style: .plain, target: self, action: #selector(showProfile))
     }
+    
+    private func loadModels() {
+        if
+            let data = UserDefaults.standard.value(forKey: keyList) as? Data,
+            let friendLst = try? JSONDecoder().decode(FriendStorage.self, from: data) {
+            models = friendLst.friends ?? []
+        }
+    }
+    
+    private func saveModels(friends: [FriendModel]) {
+        let friendsLst = FriendStorage(friends: friends)
+        if let data = try? JSONEncoder().encode(friendsLst) {
+            UserDefaults.standard.set(data, forKey: keyList)
+        }
+    }
+    
 }
 
 extension FriendTabController {
@@ -66,6 +85,6 @@ extension FriendTabController: ThemeViewDelegate {
     }
 }
 
-#Preview() {
-    FriendTabController()
-}
+//#Preview() {
+//    FriendTabController()
+//}

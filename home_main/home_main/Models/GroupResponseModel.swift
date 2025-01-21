@@ -44,3 +44,7 @@ struct GroupModel: Codable {
         case photo200 = "photo_200"
     }
 }
+
+struct GroupStorage: Codable {
+    var groups: [GroupModel]?
+}
