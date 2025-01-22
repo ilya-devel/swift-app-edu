@@ -25,6 +25,8 @@ final class GroupTabController: UITableViewController {
                 self?.tableView.reloadData()
             }
         }
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(update), for: .valueChanged)
     }
     
     private func loadModels() {
@@ -69,6 +71,20 @@ extension GroupTabController {
 extension GroupTabController: ThemeViewDelegate {
     func updateColor() {
         view.backgroundColor = AppData.currentTheme.background
+    }
+}
+
+extension GroupTabController {
+    @objc func update() {
+        networkService.getGroups {[weak self] groups in self?.models = groups
+            self?.saveModels(groups: groups)
+            DispatchQueue.main.async{
+                self?.tableView.reloadData()
+            }
+            DispatchQueue.main.async {
+                self?.refreshControl?.endRefreshing()
+            }
+        }
     }
 }
 

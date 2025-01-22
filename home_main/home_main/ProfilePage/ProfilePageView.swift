@@ -9,6 +9,8 @@ import UIKit
 
 final class ProfilePageView: UIViewController {
     
+    var isUser = true
+    
     private var photo: UIImageView = {
         let photo = UIImageView(image: UIImage(systemName: "person"))
         photo.backgroundColor = AppData.currentTheme.background
@@ -37,6 +39,7 @@ final class ProfilePageView: UIViewController {
         view.backgroundColor = AppData.currentTheme.background
         addElements()
         setupConstraints()
+        addChoiceTheme()
         networkService.getUserAbout {[weak self] users in self?.userModels = users
             DispatchQueue.main.async{
                 self?.setupData()}
@@ -46,13 +49,15 @@ final class ProfilePageView: UIViewController {
     private func addElements() {
         view.addSubview(photo)
         view.addSubview(userName)
-        view.addSubview(setThemeView)
+//        if isUser {
+//            view.addSubview(setThemeView)
+//        }
     }
     
     private func setupConstraints() {
         photo.translatesAutoresizingMaskIntoConstraints = false
         userName.translatesAutoresizingMaskIntoConstraints = false
-        setThemeView.translatesAutoresizingMaskIntoConstraints = false
+//        setThemeView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             photo.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
@@ -63,11 +68,24 @@ final class ProfilePageView: UIViewController {
             userName.topAnchor.constraint(equalTo: photo.bottomAnchor, constant: 20),
             userName.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            setThemeView.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 40),
-            setThemeView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            setThemeView.heightAnchor.constraint(equalTo: view.heightAnchor),
-            setThemeView.widthAnchor.constraint(equalTo: view.widthAnchor)
+//            setThemeView.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 40),
+//            setThemeView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            setThemeView.heightAnchor.constraint(equalTo: view.heightAnchor),
+//            setThemeView.widthAnchor.constraint(equalTo: view.widthAnchor)
         ])
+    }
+    
+    private func addChoiceTheme() {
+        if isUser {
+            view.addSubview(setThemeView)
+            setThemeView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                setThemeView.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 40),
+                setThemeView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                setThemeView.heightAnchor.constraint(equalTo: view.heightAnchor),
+                setThemeView.widthAnchor.constraint(equalToConstant: view.bounds.width)
+            ])
+        }
     }
     
     private func setupData() {
