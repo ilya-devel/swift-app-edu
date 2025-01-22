@@ -67,6 +67,13 @@ extension FriendTabController {
         cell.setupAboutFriend(friend: models[indexPath.row])
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let friendProfileVC = ProfilePageView()
+        friendProfileVC.isUser = false
+        friendProfileVC.userId = "\(models[indexPath.row].id ?? 0)"
+        navigationController?.pushViewController(friendProfileVC, animated: true)
+    }
 }
 
 private extension FriendTabController {

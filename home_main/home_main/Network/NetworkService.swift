@@ -14,7 +14,7 @@ final class NetworkService {
     static var userID = ""
     
     func getFriends(completion: @escaping ([FriendModel]) -> Void) {
-        guard let url = URL(string: "https://api.vk.com/method/friends.get?count=10&fields=first_name,last_name,is_closed,online,photo_200_orig&access_token=\(NetworkService.token)&v=5.199%20HTTP/1.1") else {return}
+        guard let url = URL(string: "https://api.vk.com/method/friends.get?user_id=15034227&count=10&fields=first_name,last_name,is_closed,online,photo_200_orig&access_token=\(NetworkService.token)&v=5.199%20HTTP/1.1") else {return}
         
         session.dataTask(with: url) { (data, _, error) in
             guard let data = data else {
@@ -22,10 +22,7 @@ final class NetworkService {
             }
             do {
                 let friends = try JSONDecoder().decode(FriendResponseModel.self, from: data).response.items
-//                print("Friends List: ")
-//                print(friends ?? "Friends List is empty")
                 completion(friends ?? [])
-//                print("=====")
             } catch{
                 print(error)
             }
@@ -41,10 +38,7 @@ final class NetworkService {
             }
             do {
                 let groups = try JSONDecoder().decode(GroupResponseModel.self, from: data).response.items
-//                print("Groups List: ")
                 completion(groups ?? [])
-//                print(groups ?? "Groups List is empty")
-//                print("=====")
             } catch{
                 print(error)
             }
@@ -60,18 +54,22 @@ final class NetworkService {
             }
             do {
                 let photos = try JSONDecoder().decode(PhotoResponseModel.self, from: data).response.items
-//                print("Photos List: ")
-//                print(photos ?? "Photos List is empty")
                 completion(photos ?? [])
-//                print("=====")
             } catch{
                 print(error)
             }
         }.resume()
     }
     
-    func getUserAbout(completion: @escaping ([UserModel]) -> Void) {
-        guard let url = URL(string: "https://api.vk.com/method/users.get?access_token=\(NetworkService.token)&v=5.199%20HTTP/1.1&fields=photo_max_orig") else {return}
+    func getUserAbout(userId: String?,completion: @escaping ([UserModel]) -> Void) {
+        let userIdString: String = {
+            if userId == nil {
+                return ""
+            } else {
+                return "user_id=\(userId!)&"
+            }
+        }()
+        guard let url = URL(string: "https://api.vk.com/method/users.get?\(userIdString)access_token=\(NetworkService.token)&v=5.199%20HTTP/1.1&fields=photo_max_orig") else {return}
         
         session.dataTask(with: url) { (data, _, error) in
             guard let data = data else {
@@ -79,10 +77,7 @@ final class NetworkService {
             }
             do {
                 let users = try JSONDecoder().decode(UserResponseModel.self, from: data).response
-//                print("Users List: ")
-//                print(users)
                 completion(users)
-//                print("=====")
             } catch{
                 print(error)
             }

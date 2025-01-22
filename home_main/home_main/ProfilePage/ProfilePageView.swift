@@ -10,6 +10,7 @@ import UIKit
 final class ProfilePageView: UIViewController {
     
     var isUser = true
+    var userId = NetworkService.userID
     
     private var photo: UIImageView = {
         let photo = UIImageView(image: UIImage(systemName: "person"))
@@ -40,7 +41,7 @@ final class ProfilePageView: UIViewController {
         addElements()
         setupConstraints()
         addChoiceTheme()
-        networkService.getUserAbout {[weak self] users in self?.userModels = users
+        networkService.getUserAbout(userId: userId) {[weak self] users in self?.userModels = users
             DispatchQueue.main.async{
                 self?.setupData()}
         }
@@ -49,15 +50,11 @@ final class ProfilePageView: UIViewController {
     private func addElements() {
         view.addSubview(photo)
         view.addSubview(userName)
-//        if isUser {
-//            view.addSubview(setThemeView)
-//        }
     }
     
     private func setupConstraints() {
         photo.translatesAutoresizingMaskIntoConstraints = false
         userName.translatesAutoresizingMaskIntoConstraints = false
-//        setThemeView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             photo.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
@@ -67,12 +64,7 @@ final class ProfilePageView: UIViewController {
             
             userName.topAnchor.constraint(equalTo: photo.bottomAnchor, constant: 20),
             userName.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
-//            setThemeView.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 40),
-//            setThemeView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            setThemeView.heightAnchor.constraint(equalTo: view.heightAnchor),
-//            setThemeView.widthAnchor.constraint(equalTo: view.widthAnchor)
-        ])
+            ])
     }
     
     private func addChoiceTheme() {
@@ -115,6 +107,6 @@ extension ProfilePageView: ThemeViewDelegate {
     }
 }
 
-#Preview {
-    ProfilePageView()
-}
+//#Preview {
+//    ProfilePageView()
+//}

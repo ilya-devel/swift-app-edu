@@ -117,6 +117,6 @@ final class FriendCell: UITableViewCell, ThemeViewDelegate {
     }
 }
 
-#Preview() {
-    FriendCell()
-}
+//#Preview() {
+//    FriendCell()
+//}
