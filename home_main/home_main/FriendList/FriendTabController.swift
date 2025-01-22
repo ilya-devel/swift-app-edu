@@ -26,6 +26,8 @@ final class FriendTabController: UITableViewController {
             self?.saveModels(friends: friends)
         }
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person"), style: .plain, target: self, action: #selector(showProfile))
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(update), for: .valueChanged)
     }
     
     private func loadModels() {
@@ -42,7 +44,6 @@ final class FriendTabController: UITableViewController {
             UserDefaults.standard.set(data, forKey: keyList)
         }
     }
-    
 }
 
 extension FriendTabController {
@@ -76,6 +77,18 @@ private extension FriendTabController {
         animation.duration = 1
         navigationController?.view.layer.add(animation, forKey: nil)
         navigationController?.pushViewController(ProfilePageView(), animated: false)
+    }
+    
+    @objc func update() {
+        networkService.getFriends {[weak self] friends in self?.models = friends
+            DispatchQueue.main.async{
+                self?.tableView.reloadData()
+            }
+            self?.saveModels(friends: friends)
+            DispatchQueue.main.async {
+                self?.refreshControl?.endRefreshing()
+            }
+        }
     }
 }
 
