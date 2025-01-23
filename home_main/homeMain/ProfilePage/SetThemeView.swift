@@ -110,9 +110,9 @@ private extension SetThemeView {
         print("update Setting...")
         let color: ColorsForTheme
         switch sender.tag {
-            case 1: color = .light
-            case 2: color = .dark
-            case 3: color = .sepia
+        case 1: color = .light
+        case 2: color = .dark
+        case 3: color = .sepia
         default:
             return
         }
@@ -123,6 +123,6 @@ private extension SetThemeView {
     }
 }
 
-#Preview {
-    SetThemeView()
-}
+// #Preview {
+//    SetThemeView()
+// }

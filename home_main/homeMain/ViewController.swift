@@ -33,7 +33,9 @@ final class ViewController: UIViewController, WKUIDelegate {
         private func tap() {
             let friend = UINavigationController(rootViewController: FriendTabController())
             let group = UINavigationController(rootViewController: GroupTabController())
-            let photo = UINavigationController(rootViewController: PhotoViewController(collectionViewLayout: ColumnFlowLayout()))
+            let photo = UINavigationController(
+                rootViewController: PhotoViewController(collectionViewLayout: ColumnFlowLayout())
+            )
 
             friend.tabBarItem = UITabBarItem(title: "Friends", image: UIImage(systemName: "person"), tag: 0)
 
@@ -45,15 +47,20 @@ final class ViewController: UIViewController, WKUIDelegate {
 
             let tabBarController = UITabBarController()
             tabBarController.viewControllers = controllers
-            guard let firstScene = UIApplication.shared.connectedScenes.first as? UIWindowScene, let firstWindow = firstScene.windows.first else {return}
+            guard let firstScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                    let firstWindow = firstScene.windows.first else {return}
 
             firstWindow.rootViewController = tabBarController
         }
 }
 
 extension ViewController: WKNavigationDelegate {
-    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-        guard let url = navigationResponse.response.url, url.path == "/blank.html", let fragment = url.fragment else {
+    func webView(
+        _ webView: WKWebView,
+        decidePolicyFor navigationResponse: WKNavigationResponse,
+        decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+        guard let url = navigationResponse.response.url,
+                url.path == "/blank.html", let fragment = url.fragment else {
             decisionHandler(.allow)
             return
         }
@@ -78,7 +85,3 @@ extension ViewController: WKNavigationDelegate {
         tap()
     }
 }
-
-//#Preview () {
-//    ViewController()
-//}

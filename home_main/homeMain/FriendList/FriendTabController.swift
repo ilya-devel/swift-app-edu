@@ -25,7 +25,10 @@ final class FriendTabController: UITableViewController {
             }
             self?.saveModels(friends: friends)
         }
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person"), style: .plain, target: self, action: #selector(showProfile))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person"),
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(showProfile))
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(update), for: .valueChanged)
     }

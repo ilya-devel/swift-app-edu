@@ -24,38 +24,38 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0996CA872D325F7500612640 /* home_main.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = home_main.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0996CA9D2D325F7500612640 /* home_mainTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = home_mainTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0996CAA72D325F7500612640 /* home_mainUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = home_mainUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0996CA872D325F7500612640 /* homeMain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = homeMain.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0996CA9D2D325F7500612640 /* homeMainTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = homeMainTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0996CAA72D325F7500612640 /* homeMainUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = homeMainUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		0996CAD12D32610C00612640 /* Exceptions for "home_main" folder in "home_main" target */ = {
+		0996CAD12D32610C00612640 /* Exceptions for "homeMain" folder in "homeMain" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = 0996CA862D325F7500612640 /* home_main */;
+			target = 0996CA862D325F7500612640 /* homeMain */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		0996CAA02D325F7500612640 /* home_mainTests */ = {
+		0996CAA02D325F7500612640 /* homeMainTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = home_mainTests;
+			path = homeMainTests;
 			sourceTree = "<group>";
 		};
-		0996CAAA2D325F7500612640 /* home_mainUITests */ = {
+		0996CAAA2D325F7500612640 /* homeMainUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = home_mainUITests;
+			path = homeMainUITests;
 			sourceTree = "<group>";
 		};
-		0996CACC2D32610B00612640 /* home_main */ = {
+		0996CACC2D32610B00612640 /* homeMain */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				0996CAD12D32610C00612640 /* Exceptions for "home_main" folder in "home_main" target */,
+				0996CAD12D32610C00612640 /* Exceptions for "homeMain" folder in "homeMain" target */,
 			);
-			path = home_main;
+			path = homeMain;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -88,9 +88,9 @@
 		0996CA7E2D325F7500612640 = {
 			isa = PBXGroup;
 			children = (
-				0996CACC2D32610B00612640 /* home_main */,
-				0996CAA02D325F7500612640 /* home_mainTests */,
-				0996CAAA2D325F7500612640 /* home_mainUITests */,
+				0996CACC2D32610B00612640 /* homeMain */,
+				0996CAA02D325F7500612640 /* homeMainTests */,
+				0996CAAA2D325F7500612640 /* homeMainUITests */,
 				0996CA882D325F7500612640 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -98,9 +98,9 @@
 		0996CA882D325F7500612640 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0996CA872D325F7500612640 /* home_main.app */,
-				0996CA9D2D325F7500612640 /* home_mainTests.xctest */,
-				0996CAA72D325F7500612640 /* home_mainUITests.xctest */,
+				0996CA872D325F7500612640 /* homeMain.app */,
+				0996CA9D2D325F7500612640 /* homeMainTests.xctest */,
+				0996CAA72D325F7500612640 /* homeMainUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -108,9 +108,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0996CA862D325F7500612640 /* home_main */ = {
+		0996CA862D325F7500612640 /* homeMain */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0996CAB02D325F7500612640 /* Build configuration list for PBXNativeTarget "home_main" */;
+			buildConfigurationList = 0996CAB02D325F7500612640 /* Build configuration list for PBXNativeTarget "homeMain" */;
 			buildPhases = (
 				0996CA832D325F7500612640 /* Sources */,
 				09AF37532D423C5A00FECF81 /* Run Script */,
@@ -122,18 +122,18 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				0996CACC2D32610B00612640 /* home_main */,
+				0996CACC2D32610B00612640 /* homeMain */,
 			);
-			name = home_main;
+			name = homeMain;
 			packageProductDependencies = (
 			);
 			productName = home_main;
-			productReference = 0996CA872D325F7500612640 /* home_main.app */;
+			productReference = 0996CA872D325F7500612640 /* homeMain.app */;
 			productType = "com.apple.product-type.application";
 		};
-		0996CA9C2D325F7500612640 /* home_mainTests */ = {
+		0996CA9C2D325F7500612640 /* homeMainTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0996CAB52D325F7500612640 /* Build configuration list for PBXNativeTarget "home_mainTests" */;
+			buildConfigurationList = 0996CAB52D325F7500612640 /* Build configuration list for PBXNativeTarget "homeMainTests" */;
 			buildPhases = (
 				0996CA992D325F7500612640 /* Sources */,
 				0996CA9A2D325F7500612640 /* Frameworks */,
@@ -145,18 +145,18 @@
 				0996CA9F2D325F7500612640 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				0996CAA02D325F7500612640 /* home_mainTests */,
+				0996CAA02D325F7500612640 /* homeMainTests */,
 			);
-			name = home_mainTests;
+			name = homeMainTests;
 			packageProductDependencies = (
 			);
 			productName = home_mainTests;
-			productReference = 0996CA9D2D325F7500612640 /* home_mainTests.xctest */;
+			productReference = 0996CA9D2D325F7500612640 /* homeMainTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		0996CAA62D325F7500612640 /* home_mainUITests */ = {
+		0996CAA62D325F7500612640 /* homeMainUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0996CAB82D325F7500612640 /* Build configuration list for PBXNativeTarget "home_mainUITests" */;
+			buildConfigurationList = 0996CAB82D325F7500612640 /* Build configuration list for PBXNativeTarget "homeMainUITests" */;
 			buildPhases = (
 				0996CAA32D325F7500612640 /* Sources */,
 				0996CAA42D325F7500612640 /* Frameworks */,
@@ -168,13 +168,13 @@
 				0996CAA92D325F7500612640 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				0996CAAA2D325F7500612640 /* home_mainUITests */,
+				0996CAAA2D325F7500612640 /* homeMainUITests */,
 			);
-			name = home_mainUITests;
+			name = homeMainUITests;
 			packageProductDependencies = (
 			);
 			productName = home_mainUITests;
-			productReference = 0996CAA72D325F7500612640 /* home_mainUITests.xctest */;
+			productReference = 0996CAA72D325F7500612640 /* homeMainUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -200,7 +200,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0996CA822D325F7500612640 /* Build configuration list for PBXProject "home_main" */;
+			buildConfigurationList = 0996CA822D325F7500612640 /* Build configuration list for PBXProject "homeMain" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -214,9 +214,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0996CA862D325F7500612640 /* home_main */,
-				0996CA9C2D325F7500612640 /* home_mainTests */,
-				0996CAA62D325F7500612640 /* home_mainUITests */,
+				0996CA862D325F7500612640 /* homeMain */,
+				0996CA9C2D325F7500612640 /* homeMainTests */,
+				0996CAA62D325F7500612640 /* homeMainUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -293,12 +293,12 @@
 /* Begin PBXTargetDependency section */
 		0996CA9F2D325F7500612640 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0996CA862D325F7500612640 /* home_main */;
+			target = 0996CA862D325F7500612640 /* homeMain */;
 			targetProxy = 0996CA9E2D325F7500612640 /* PBXContainerItemProxy */;
 		};
 		0996CAA92D325F7500612640 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0996CA862D325F7500612640 /* home_main */;
+			target = 0996CA862D325F7500612640 /* homeMain */;
 			targetProxy = 0996CAA82D325F7500612640 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -313,7 +313,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = home_main/Info.plist;
+				INFOPLIST_FILE = homeMain/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -340,7 +340,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = home_main/Info.plist;
+				INFOPLIST_FILE = homeMain/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -491,7 +491,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/home_main.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/home_main";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/homeMain.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/homeMain";
 			};
 			name = Debug;
 		};
@@ -509,7 +509,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/home_main.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/home_main";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/homeMain.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/homeMain";
 			};
 			name = Release;
 		};
@@ -548,7 +548,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0996CA822D325F7500612640 /* Build configuration list for PBXProject "home_main" */ = {
+		0996CA822D325F7500612640 /* Build configuration list for PBXProject "homeMain" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0996CAB32D325F7500612640 /* Debug */,
@@ -557,7 +557,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0996CAB02D325F7500612640 /* Build configuration list for PBXNativeTarget "home_main" */ = {
+		0996CAB02D325F7500612640 /* Build configuration list for PBXNativeTarget "homeMain" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0996CAB12D325F7500612640 /* Debug */,
@@ -566,7 +566,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0996CAB52D325F7500612640 /* Build configuration list for PBXNativeTarget "home_mainTests" */ = {
+		0996CAB52D325F7500612640 /* Build configuration list for PBXNativeTarget "homeMainTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0996CAB62D325F7500612640 /* Debug */,
@@ -575,7 +575,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0996CAB82D325F7500612640 /* Build configuration list for PBXNativeTarget "home_mainUITests" */ = {
+		0996CAB82D325F7500612640 /* Build configuration list for PBXNativeTarget "homeMainUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0996CAB92D325F7500612640 /* Debug */,

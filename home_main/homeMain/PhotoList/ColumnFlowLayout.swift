@@ -12,10 +12,11 @@ final class ColumnFlowLayout: UICollectionViewFlowLayout {
     override func prepare() {
         super.prepare()
 
-        guard let cv = collectionView else { return }
+        guard let layoutCV = collectionView else { return }
 
         // set our width x height
-        itemSize = CGSize(width: cv.bounds.inset(by: cv.layoutMargins).size.width/2 - 5, height: cv.bounds.inset(by: cv.layoutMargins).size.width/2 - 5)
+        itemSize = CGSize(width: layoutCV.bounds.inset(by: layoutCV.layoutMargins).size.width/2 - 5,
+                          height: layoutCV.bounds.inset(by: layoutCV.layoutMargins).size.width/2 - 5)
 
         // set inset
         sectionInset = UIEdgeInsets(top: minimumInteritemSpacing, left: 5.0, bottom: 0.0, right: 5.0)
