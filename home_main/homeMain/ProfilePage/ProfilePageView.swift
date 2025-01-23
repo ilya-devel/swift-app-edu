@@ -36,7 +36,7 @@ final class ProfilePageView: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        ColorsSchemeControll.addView(newView: self)
+        ColorsSchemeControl.addView(newView: self)
         view.backgroundColor = AppData.currentTheme.background
         addElements()
         setupConstraints()

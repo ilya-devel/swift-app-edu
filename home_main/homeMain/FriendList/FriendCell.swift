@@ -107,7 +107,7 @@ final class FriendCell: UITableViewCell, ThemeViewDelegate {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        ColorsSchemeControll.addView(newView: self)
+        ColorsSchemeControl.addView(newView: self)
         setupView()
     }
 

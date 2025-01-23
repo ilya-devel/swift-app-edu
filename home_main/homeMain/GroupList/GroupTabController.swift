@@ -15,7 +15,7 @@ final class GroupTabController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadModels()
-        ColorsSchemeControll.addView(newView: self)
+        ColorsSchemeControl.addView(newView: self)
         view.backgroundColor = AppData.currentTheme.background
         title = "Groups"
         tableView.register(GroupCell.self, forCellReuseIdentifier: "group")

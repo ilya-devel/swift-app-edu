@@ -15,7 +15,7 @@ final class PhotoViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        ColorsSchemeControll.addView(newView: self)
+        ColorsSchemeControl.addView(newView: self)
         title = "Photos"
         tabBarItem.title = "Photos"
         setupViews()

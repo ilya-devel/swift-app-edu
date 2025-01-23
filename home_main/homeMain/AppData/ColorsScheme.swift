@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ColorsSchemeControll {
+class ColorsSchemeControl {
     static var lstViews: [ThemeViewDelegate] = []
 
     static func addView(newView: ThemeViewDelegate) {

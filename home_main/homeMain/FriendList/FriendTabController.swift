@@ -15,7 +15,7 @@ final class FriendTabController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadModels()
-        ColorsSchemeControll.addView(newView: self)
+        ColorsSchemeControl.addView(newView: self)
         view.backgroundColor = AppData.currentTheme.background
         title = "Friends"
         tableView.register(FriendCell.self, forCellReuseIdentifier: "friend")

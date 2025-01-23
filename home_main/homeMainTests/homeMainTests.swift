@@ -6,7 +6,7 @@
 //
 
 import Testing
-@testable import home_main
+@testable import homeMain
 
 struct HomeMainTests {
 

@@ -58,7 +58,7 @@ final class SetThemeView: UIView, ThemeViewDelegate {
 
     init() {
         super.init(frame: .zero)
-        ColorsSchemeControll.addView(newView: self)
+        ColorsSchemeControl.addView(newView: self)
 //        backgroundColor = AppData.currentTheme.background
 //        backgroundColor = .red
         btnLightTheme.addTarget(self, action: #selector(setTheme), for: .touchUpInside)
@@ -118,7 +118,7 @@ private extension SetThemeView {
         }
         AppData.setCurrentTheme(color: color)
 //        delegate?.updateColor()
-        ColorsSchemeControll.updateScheme()
+        ColorsSchemeControl.updateScheme()
         print("OK")
     }
 }
